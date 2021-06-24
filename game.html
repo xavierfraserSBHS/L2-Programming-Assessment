@@ -16,6 +16,14 @@
             setInterval(mainloop , 1000/50);
         } // end func
         
+        var playerXpos = 0;
+        var playerYpos = 0;
+        const playerSIZE = 20;
+        var playerXspeed = 5;
+        var playerYspeed = 5;
+        
+        
+        
         function mainloop(){
             colorRect(0,0,canvas.width, canvas.height, 'black'); // bg
             colorRect(0,0,25,25, 'red');

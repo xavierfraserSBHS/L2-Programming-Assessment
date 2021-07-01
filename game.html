@@ -4,7 +4,7 @@
 </head>
 
 <body>
-    <canvas id="gameCanvas" width="1100" height="900"</canvas>
+    <canvas id="gameCanvas" width="1100" height="930"</canvas>
     <script>
         var canvas;
         var canvasContext;
@@ -22,21 +22,28 @@
         const playerSIZE = 80;
         var playerXspeed = 5;
         var playerYspeed = 5;
+
+        // enemy vars
+        var enemyXpos = 20;
+        var enemyYpos = 20;
+        const enemySIZE = 50;
+        var enemyXspeed = 2;
+        var enemyYspeed = 2;
         
         var player = new Image();
         player.src = 'player.png';
-       
+        
         var settingUp = true;
 
         function mainloop(){
             colorRect(0,0,canvas.width, canvas.height, 'black'); // bg
             drawImgs(player,playerXpos, playerYpos, playerSIZE*1.4, playerSIZE); //  player
-
+            colorRect(enemyXpos, enemyYpos, enemySIZE, enemySIZE, 'red'); // enemy
+            
             if(settingUp){
                 setup();
                 settingUp = false;
             }
-
         } // end func
 
         function drawImgs(src,sx,sy,dx,dy){ 
@@ -44,10 +51,9 @@
         }
 
         function setup(){
-            playerXpos = canvas.width / 2 - playerSIZE / 2;
-            playerYpos = canvas.height / 1.2 - playerSIZE / 2; 
+            playerXpos = canvas.width / 2.1 - playerSIZE / 2;
+            playerYpos = canvas.height / 1.14 - playerSIZE / 2; 
         }
-        
         
         function colorRect(x,y,w,h,c){
             canvasContext.fillStyle = c;

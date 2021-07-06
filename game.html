@@ -33,12 +33,15 @@
         var player = new Image();
         player.src = 'player.png';
         
+        var enemy = new Image();
+        enemy.src = 'enemy.png';
+        
         var settingUp = true;
 
         function mainloop(){
             colorRect(0,0,canvas.width, canvas.height, 'black'); // bg
             drawImgs(player,playerXpos, playerYpos, playerSIZE*1.4, playerSIZE); //  player
-            colorRect(enemyXpos, enemyYpos, enemySIZE, enemySIZE, 'red'); // enemy
+            drawImgs(enemy,enemyXpos, enemyYpos, enemySIZE, enemySIZE); // enemy
             
             if(settingUp){
                 setup();

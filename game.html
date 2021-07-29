@@ -24,12 +24,16 @@
         var playerYspeed = 5;
 
         // enemy vars
-        var enemyXpos = 20;
+        var enemyXpos = 500;
         var enemyYpos = 20;
-        const enemySIZE = 50;
+        const enemySIZE = 90;
         var enemyXspeed = 2;
         var enemyYspeed = 2;
         
+
+        var bg = new Image();
+        bg.src = 'bg.png';
+
         var player = new Image();
         player.src = 'player.png';
         
@@ -39,7 +43,7 @@
         var settingUp = true;
 
         function mainloop(){
-            colorRect(0,0,canvas.width, canvas.height, 'black'); // bg
+            drawImgs(bg,0,0,canvas.width, canvas.height); // bg
             drawImgs(player,playerXpos, playerYpos, playerSIZE*1.4, playerSIZE); //  player
             drawImgs(enemy,enemyXpos, enemyYpos, enemySIZE, enemySIZE); // enemy
             
@@ -49,6 +53,11 @@
             }
         } // end func
 
+        function playerMove(){
+            
+        }
+        
+        
         function drawImgs(src,sx,sy,dx,dy){ 
             canvasContext.drawImage(src,sx,sy,dx,dy);
         }

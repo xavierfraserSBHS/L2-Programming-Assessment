@@ -12,58 +12,81 @@
         window.onload = function(){
             canvas = document.getElementById('gameCanvas');
             canvasContext = canvas.getContext('2d');
-        
-            setInterval(mainloop , 1000/50);
-        } // end func
-        
-        // player vars
-        var playerXpos = 0;
-        var playerYpos = 0;
-        const playerSIZE = 80;
-        var playerXspeed = 5;
-        var playerYspeed = 5;
 
-        // enemy vars
-        var enemyXpos = 500;
-        var enemyYpos = 20;
-        const enemySIZE = 90;
-        var enemyXspeed = 2;
-        var enemyYspeed = 2;
-        
+            canvas.addEventListener('mousemove', function(evt) { 
+            var mousePos = mouseAction(evt); 
+            mouseX = mousePos.x; 
+            mouseY = mousePos.y; 
+        }); 
 
-        var bg = new Image();
-        bg.src = 'bg.png';
-
-        var player = new Image();
-        player.src = 'player.png';
         
-        var enemy = new Image();
-        enemy.src = 'enemy.png';
+        setInterval(mainloop , 1000/50);
+    } // end func
+    
+    // player vars
+    var playerXpos = 0;
+    var playerYpos = 0;
+    const playerSIZE = 80;
+    var playerXspeed = 5;
+    var playerYspeed = 5;
+    
+    // enemy vars
+    var enemyXpos = 500;
+    var enemyYpos = 20;
+    const enemySIZE = 90;
+    var enemyXspeed = 2;
+    var enemyYspeed = 2;
+    
+    var mouseX , mouseY; 
+    
+    var bg = new Image();
+    bg.src = 'bg.png';
+    
+    var player = new Image();
+    player.src = 'player.png';
+    
+    var enemy = new Image();
+    enemy.src = 'enemy.png';
+    
+    var settingUp = true;
+    
+    function mainloop(){
+        drawImgs(bg,0,0,canvas.width, canvas.height); // bg
+        drawImgs(player,playerXpos, playerYpos, playerSIZE*1.4, playerSIZE); //  player
+        drawImgs(enemy,enemyXpos, enemyYpos, enemySIZE, enemySIZE); // enemy
         
-        var settingUp = true;
-
-        function mainloop(){
-            drawImgs(bg,0,0,canvas.width, canvas.height); // bg
-            drawImgs(player,playerXpos, playerYpos, playerSIZE*1.4, playerSIZE); //  player
-            drawImgs(enemy,enemyXpos, enemyYpos, enemySIZE, enemySIZE); // enemy
-            
-            if(settingUp){
-                setup();
-                settingUp = false;
-            }
-        } // end func
-
-        function playerMove(){
-            
-        }
-        
-        
-        function drawImgs(src,sx,sy,dx,dy){ 
-            canvasContext.drawImage(src,sx,sy,dx,dy);
+        if(settingUp){
+            setup();
+            settingUp = false;
         }
 
-        function setup(){
-            playerXpos = canvas.width / 2.1 - playerSIZE / 2;
+        playerMove();
+    } // end func
+    
+    function playerMove(){
+        playerXpos = mouseX;
+        playerYpos = mouseY;
+    }
+    
+    function mouseAction(evt) { 
+        var rect = canvas.getBoundingClientRect(); 
+        var root = document.documentElement; 
+
+        mouseX = evt.clientX - rect.left - root.scrollLeft; 
+        mouseY = evt.clientY - rect.top - root.scrollTop; 
+
+        return { 
+            x: mouseX, 
+            y: mouseY 
+        } 
+    } 
+    
+    function drawImgs(src,sx,sy,dx,dy){ 
+        canvasContext.drawImage(src,sx,sy,dx,dy);
+    }
+    
+    function setup(){
+        playerXpos = canvas.width / 2.1 - playerSIZE / 2;
             playerYpos = canvas.height / 1.14 - playerSIZE / 2; 
         }
         

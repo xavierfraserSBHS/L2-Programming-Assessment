@@ -34,8 +34,8 @@
     var enemyXpos = 500;
     var enemyYpos = 20;
     const enemySIZE = 90;
-    var enemyXspeed = 5;
-    var enemyYspeed = 5;
+    var enemyXspeed = 10;
+    var enemyYspeed = 10;
     
 
 
@@ -76,6 +76,13 @@
         if(enemyXpos < 0){
             enemyXpos += enemyXspeed * 2;
             enemyXspeed *= -1;
+            for(var i = 0; i < 10; i++){
+                enemyYpos += enemyYspeed;
+            }
+        }
+        if(enemyXpos > canvas.width - enemySIZE){
+            enemyXspeed *= -1;
+            enemyXpos -= enemyXspeed * 2;
             for(var i = 0; i < 10; i++){
                 enemyYpos += enemyYspeed;
             }

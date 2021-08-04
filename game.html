@@ -34,9 +34,11 @@
     var enemyXpos = 500;
     var enemyYpos = 20;
     const enemySIZE = 90;
-    var enemyXspeed = 2;
-    var enemyYspeed = 2;
+    var enemyXspeed = 5;
+    var enemyYspeed = 5;
     
+
+
     var mouseX , mouseY; 
     
     var bg = new Image();
@@ -61,11 +63,23 @@
         }
 
         playerMove();
+        enemyMove();
     } // end func
     
     function playerMove(){
         playerXpos = mouseX;
         playerYpos = mouseY;
+    }
+    
+    function enemyMove(){
+        enemyXpos -= enemyXspeed;
+        if(enemyXpos < 0){
+            enemyXpos += enemyXspeed * 2;
+            enemyXspeed *= -1;
+            for(var i = 0; i < 10; i++){
+                enemyYpos += enemyYspeed;
+            }
+        }
     }
     
     function mouseAction(evt) { 

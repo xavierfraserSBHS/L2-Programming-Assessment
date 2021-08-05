@@ -33,9 +33,9 @@
     // enemy vars
     var enemyXpos = 500;
     var enemyYpos = 20;
-    const enemySIZE = 90;
-    var enemyXspeed = 10;
-    var enemyYspeed = 10;
+    const enemySIZE = 60;
+    var enemyXspeed = 5;
+    var enemyYspeed = 4;
     
 
 
@@ -52,6 +52,8 @@
     
     var settingUp = true;
     
+    var bullet
+    
     function mainloop(){
         drawImgs(bg,0,0,canvas.width, canvas.height); // bg
         drawImgs(player,playerXpos, playerYpos, playerSIZE*1.4, playerSIZE); //  player
@@ -67,8 +69,8 @@
     } // end func
     
     function playerMove(){
-        playerXpos = mouseX;
-        playerYpos = mouseY;
+        playerXpos = mouseX - playerSIZE / 2;
+        playerYpos = canvas.height - playerSIZE * 2;
     }
     
     function enemyMove(){
@@ -87,6 +89,12 @@
                 enemyYpos += enemyYspeed;
             }
         }
+    
+        if(enemyYpos + enemySIZE > playerYpos && enemyYpos < playerYpos + playerSIZE
+        && enemyXpos + enemySIZE > playerXpos && enemyXpos < playerXpos + playerSIZE){
+            console.log('hit');
+        }
+    
     }
     
     function mouseAction(evt) { 

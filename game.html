@@ -108,27 +108,28 @@
     }
     
     function enemyMove(){
-        enemyXpos -= enemyXspeed;
-        if(enemyXpos < 0){
-            enemyXpos += enemyXspeed * 2;
-            enemyXspeed *= -1;
-            for(var i = 0; i < 10; i++){
-                enemyYpos += enemyYspeed;
+        enemies.forEach(function(enemy,i,array){
+            enemy.enemyXpos -= enemy.enemyXspeed;
+            if(enemy.enemyXpos < 0){
+                enemy.enemyXpos += enemy.enemyXspeed * 2;
+                enemy.enemyXspeed *= -1;
+                for(var i = 0; i < 10; i++){
+                    enemy.enemyYpos += enemy.enemyYspeed;
+                }
             }
-        }
-        if(enemyXpos > canvas.width - enemySIZE){
-            enemyXspeed *= -1;
-            enemyXpos -= enemyXspeed * 2;
-            for(var i = 0; i < 10; i++){
-                enemyYpos += enemyYspeed;
+            if(enemy.enemyXpos > canvas.width - enemy.enemySIZE){
+                enemy.enemyXspeed *= -1;
+                enemy.enemyXpos -= enemy.enemyXspeed * 2;
+                for(var i = 0; i < 10; i++){
+                    enemy.enemyYpos += enemy.enemyYspeed;
+                }
             }
-        }
-    
-        if(enemyYpos + enemySIZE > playerYpos && enemyYpos < playerYpos + playerSIZE
-        && enemyXpos + enemySIZE > playerXpos && enemyXpos < playerXpos + playerSIZE){
-            console.log('hit');
-        }
-    
+        
+            if(enemy.enemyYpos + enemy.enemySIZE > playerYpos && enemy.enemyYpos < playerYpos + playerSIZE
+            && enemy.enemyXpos + enemy.enemySIZE > playerXpos && enemy.enemyXpos < playerXpos + playerSIZE){
+                console.log('hit');
+            }
+        });
     }
     
     function mouseAction(evt) { 
